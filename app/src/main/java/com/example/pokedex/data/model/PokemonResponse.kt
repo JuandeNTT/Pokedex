@@ -21,7 +21,7 @@ data class Sprites(
     val frontDefault: String
 )
 
-fun extractId(url: String): Int {
+fun getId(url: String): Int {
     return url.trimEnd('/').substringAfterLast('/').toInt()
 }
 

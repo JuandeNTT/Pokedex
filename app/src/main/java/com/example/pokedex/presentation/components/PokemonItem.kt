@@ -15,13 +15,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.pokedex.data.model.PokemonResult
-import com.example.pokedex.data.model.extractId
+import com.example.pokedex.data.model.getId
 import com.example.pokedex.data.model.getImageUrl
 
 @Composable
 fun PokemonItem(pokemon: PokemonResult) {
 
-    val id = extractId(pokemon.url)
+    val id = getId(pokemon.url)
     val imageUrl = getImageUrl(id)
 
     Card(
