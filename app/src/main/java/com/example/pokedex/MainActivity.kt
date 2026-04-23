@@ -5,12 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.example.pokedex.ui.theme.PokedexTheme
-import androidx.compose.foundation.layout.*
-import com.example.pokedex.presentation.feature.screens.PokemonScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.pokedex.presentation.feature.navigation.ScreensNavHost
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,10 +17,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PokedexTheme {
+                val navController = rememberNavController()
+
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Box(modifier = Modifier.padding(innerPadding)) {
-                        PokemonScreen()
-                    }
+                    ScreensNavHost(navController, innerPadding)
                 }
             }
         }
