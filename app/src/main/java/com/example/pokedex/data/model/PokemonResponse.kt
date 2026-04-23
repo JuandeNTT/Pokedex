@@ -11,10 +11,18 @@ data class PokemonResult(
 data class PokemonDetail(
     val id: Int,
     val name: String,
-    val types: String,
     val height: Int,
     val weight: Int,
+    val types: List<Types>,
     val sprites: Sprites
+)
+
+data class Types(
+    val type: Type
+)
+
+data class Type(
+    val name: String
 )
 
 data class Sprites(
