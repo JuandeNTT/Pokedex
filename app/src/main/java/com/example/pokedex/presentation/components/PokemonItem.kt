@@ -13,13 +13,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.pokedex.data.model.PokemonResult
 import com.example.pokedex.data.model.getId
 import com.example.pokedex.data.model.getImageUrl
+import com.example.pokedex.presentation.feature.viewmodel.PokemonViewModel
 
 @Composable
-fun PokemonItem(pokemon: PokemonResult) {
+fun PokemonItem(
+    pokemon: PokemonResult,
+    navController: NavController,
+    viewModel: PokemonViewModel
+) {
 
     val id = getId(pokemon.url)
     val imageUrl = getImageUrl(id)
@@ -28,7 +34,11 @@ fun PokemonItem(pokemon: PokemonResult) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        elevation = CardDefaults.cardElevation(8.dp)
+        elevation = CardDefaults.cardElevation(8.dp),
+        onClick = {
+            viewModel.selectedPokemon = pokemon
+            navController.navigate("pokemon_detail")
+        }
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -40,15 +50,8 @@ fun PokemonItem(pokemon: PokemonResult) {
                 modifier = Modifier.size(120.dp)
             )
 
-            Text(
-                text = "ID: #$id",
-                style = MaterialTheme.typography.labelMedium
-            )
-
-            Text(
-                text = pokemon.name.uppercase(),
-                style = MaterialTheme.typography.headlineSmall
-            )
+            Text(text = "ID: #$id")
+            Text(text = pokemon.name.uppercase())
         }
     }
 }
@@ -57,6 +60,10 @@ fun PokemonItem(pokemon: PokemonResult) {
 @Composable
 fun PokemonItemPreview() {
     MaterialTheme {
-        PokemonItem(pokemon = PokemonResult("Charmander", "https://pokeapi.co/api/v2/pokemon/4/"))
+        PokemonItem(
+            pokemon = PokemonResult("Charmander", "https://pokeapi.co/api/v2/pokemon/4/"),
+            navController = TODO(),
+            viewModel = TODO()
+        )
     }
 }
