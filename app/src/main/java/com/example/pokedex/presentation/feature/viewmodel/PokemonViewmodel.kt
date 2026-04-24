@@ -23,13 +23,17 @@ class PokemonViewModel : ViewModel() {
         loadPokemons()
     }
 
-    private fun loadPokemons() {
+    fun loadPokemons() {
         viewModelScope.launch {
             try {
                 val response = RetrofitClient.instance.getPokemonList()
-                _uiState = PokemonUiState.Success(response.results)
+                _uiState = if (response.results.isEmpty()) {
+                    PokemonUiState.Empty
+                } else {
+                    PokemonUiState.Success(response.results)
+                }
             } catch (_: Exception) {
-                _uiState = PokemonUiState.Error("Error al cargar")
+                _uiState = PokemonUiState.Error("Error al cargar Pokédex")
             }
         }
     }
