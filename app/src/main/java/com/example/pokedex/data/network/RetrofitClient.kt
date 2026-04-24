@@ -1,6 +1,5 @@
 package com.example.pokedex.data.network
 
-import com.example.pokedex.data.network.PokeApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
