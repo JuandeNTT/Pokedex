@@ -12,9 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.pokedex.R
 import com.example.pokedex.ui.theme.LocalDimens
 
 @Composable
@@ -39,15 +41,15 @@ fun EmptyScreen() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                Text("Pokédex vacía", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.empty_pokedex), fontWeight = FontWeight.Bold)
 
                 Text(
-                    "No se encontraron registros en la Pokédex",
+                    stringResource(R.string.no_register),
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(vertical = dimens.paddingSmall)
                 )
 
-                Text("¡¡¡¡Hazte con todos!!!!", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.catch_em_all), fontWeight = FontWeight.Bold)
             }
         }
     }

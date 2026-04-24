@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="empty_pokedex">Pokédex vacía</string>
+    <string name="no_register">No se encontraron registros en la Pokédex</string>
+    <string name="catch_em_all">¡¡¡¡Hazte con todos!!!!</string>
+    <string name="retry">Reintentar</string>
+    <string name="no_pokemon_selected">No hay Pokémon seleccionado</string>
+    <string name="type">TIPO</string>
+    <string name="id">ID: #%1$d</string>
+    <string name="height">ALTURA</string>
+    <string name="weight">PESO</string>
+    <string name="back_to_list">Volver al listado</string>
+    <string name="pokedex">Pokedex</string>
+    <string name="starting_pokedex">Inicializando pokédex...</string>
 </resources>

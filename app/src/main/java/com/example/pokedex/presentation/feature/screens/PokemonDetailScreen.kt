@@ -1,6 +1,5 @@
 package com.example.pokedex.presentation.feature.screens
 
-import android.R
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,14 +23,15 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.pokedex.data.model.getId
 import com.example.pokedex.data.model.getImageUrl
 import com.example.pokedex.presentation.feature.viewmodel.PokemonViewModel
 import com.example.pokedex.ui.theme.LocalDimens
+import com.example.pokedex.R
 
 @Composable
 fun PokemonDetailScreen(
@@ -42,7 +42,7 @@ fun PokemonDetailScreen(
     val pokemon = viewModel.selectedPokemon
 
     if (pokemon == null) {
-        Text("No hay Pokémon seleccionado")
+        Text(stringResource(R.string.no_pokemon_selected))
         return
     }
 
@@ -82,7 +82,7 @@ fun PokemonDetailScreen(
             Spacer(modifier = Modifier.height(dimens.spacerLarge12))
 
             Text(
-                text = "ID: #$id",
+                text = stringResource(R.string.id, id),
                 color = Color.Gray,
                 fontSize = dimens.textMedium,
                 letterSpacing = dimens.letterSpacingSmall
@@ -112,7 +112,7 @@ fun PokemonDetailScreen(
                 ) {
 
                     Text(
-                        text = "TIPO",
+                        text = stringResource(R.string.type),
                         fontSize = dimens.textSmall,
                         color = Color.Gray,
                         letterSpacing = dimens.letterSpacingSmall
@@ -128,7 +128,7 @@ fun PokemonDetailScreen(
                     Spacer(modifier = Modifier.height(dimens.spacerLarge12))
 
                     Text(
-                        text = "ALTURA",
+                        text = stringResource(R.string.height),
                         fontSize = dimens.textMedium,
                         fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                         color = Color.Gray,
@@ -144,7 +144,7 @@ fun PokemonDetailScreen(
                     Spacer(modifier = Modifier.height(dimens.spacerLarge12))
 
                     Text(
-                        text = "PESO",
+                        text = stringResource(R.string.weight),
                         fontSize = dimens.textSmall,
                         fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                         color = Color.Gray,
@@ -174,10 +174,10 @@ fun PokemonDetailScreen(
         ) {
         Icon(
             Icons.Default.ArrowBack,
-            contentDescription = "Volver al listado"
+            contentDescription = stringResource(R.string.back_to_list)
         )
         Spacer(Modifier.width(dimens.borderRadiusSmall))
-        Text("Volver al listado")
+        Text(stringResource(R.string.back_to_list))
     }
     }
 }

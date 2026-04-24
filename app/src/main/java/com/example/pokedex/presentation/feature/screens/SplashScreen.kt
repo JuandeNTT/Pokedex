@@ -11,6 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,11 +42,11 @@ fun Splash() {
     ) {
         Image(
             painter = painterResource(id = R.drawable.pokedex),
-            contentDescription = "Pokedex",
+            contentDescription = stringResource(R.string.pokedex),
             modifier = Modifier.size(dimens.pokemonImageExtraMedium)
         )
         Text(
-            text = "Inicializando pokédex...",
+            text = stringResource(R.string.starting_pokedex),
             fontSize = dimens.textExtraLarge,
             fontWeight = FontWeight.Bold
         )

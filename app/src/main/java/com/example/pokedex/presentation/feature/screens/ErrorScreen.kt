@@ -20,9 +20,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.pokedex.R
 import com.example.pokedex.ui.theme.LocalDimens
 
 @Composable
@@ -68,10 +70,10 @@ fun ErrorScreen(message: String, onRetry: () -> Unit) {
                 ) {
                     Icon(
                         Icons.Default.Refresh,
-                        contentDescription = "Reintentar"
+                        contentDescription = stringResource(R.string.retry)
                     )
                     Spacer(Modifier.width(dimens.spacerLarge))
-                    Text("Reintentar")
+                    Text(stringResource(R.string.retry))
                 }
             }
         }
