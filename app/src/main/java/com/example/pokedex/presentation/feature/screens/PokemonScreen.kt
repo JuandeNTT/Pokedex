@@ -2,11 +2,14 @@ package com.example.pokedex.presentation.feature.screens
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.pokedex.presentation.state.PokemonUiState
 import com.example.pokedex.presentation.components.PokemonItem
@@ -26,9 +29,23 @@ fun PokemonScreen(
         }
 
         is PokemonUiState.Success -> {
-            LazyColumn {
-                items(state.pokemons) { pokemon ->
-                    PokemonItem(pokemon, navController, viewModel)
+
+            val pageSize = 5
+            val pages = state.pokemons.chunked(pageSize)
+
+            val pagerState = rememberPagerState(
+                pageCount = { Int.MAX_VALUE }
+            )
+
+            HorizontalPager(state = pagerState) { page ->
+
+                val pageIndex = page % pages.size
+                val pokemonsList = pages[pageIndex]
+
+                LazyColumn {
+                    items(pokemonsList) { pokemon ->
+                        PokemonItem(pokemon, navController, viewModel)
+                    }
                 }
             }
         }
