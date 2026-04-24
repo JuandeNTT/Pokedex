@@ -10,11 +10,13 @@ import com.example.pokedex.presentation.feature.screens.PokemonDetailScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.pokedex.presentation.feature.screens.PokemonScreen
+import com.example.pokedex.presentation.feature.screens.SplashScreen
 import com.example.pokedex.presentation.feature.viewmodel.PokemonViewModel
 
 sealed class ScreenRoutes(
     val route: String
 ){
+    object SplashScreen: ScreenRoutes("splash_screen")
     object PokemonScreen : ScreenRoutes("pokemon_list")
     object PokemonDetailScreen : ScreenRoutes("pokemon_detail")
 
@@ -29,10 +31,13 @@ fun ScreensNavHost(
 
     NavHost(
         navController = navController,
-        startDestination = ScreenRoutes.PokemonScreen.route,
+        startDestination = ScreenRoutes.SplashScreen.route,
         modifier = Modifier.padding(innerPadding),
     ) {
 
+        composable(ScreenRoutes.SplashScreen.route) {
+            SplashScreen(navController)
+        }
         composable(ScreenRoutes.PokemonScreen.route) {
             PokemonScreen(viewModel, navController)
         }
