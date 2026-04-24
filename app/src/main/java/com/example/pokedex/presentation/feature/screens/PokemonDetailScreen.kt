@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -25,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.pokedex.data.model.getId
@@ -64,18 +64,34 @@ fun PokemonDetailScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            AsyncImage(
-                model = imageUrl,
-                contentDescription = pokemon.name,
-                modifier = Modifier.size(180.dp)
-            )
+            Card(
+                modifier = Modifier.size(180.dp),
+                border = BorderStroke(2.dp, Color.LightGray),
+                shape = CardDefaults.shape,
+                elevation = CardDefaults.cardElevation(20.dp)
+            ) {
+                AsyncImage(
+                    model = imageUrl,
+                    contentDescription = pokemon.name,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            Text(text = "ID: #$id")
+            Text(
+                text = "ID: #$id",
+                color = Color.Gray,
+                fontSize = 16.sp,
+                letterSpacing = 1.2.sp
+            )
 
-            Text(text = pokemon.name.uppercase())
-
+            Text(
+                text = pokemon.name.uppercase(),
+                fontSize = 30.sp,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold,
+                letterSpacing = 2.sp
+            )
             Spacer(modifier = Modifier.height(20.dp))
 
             if (detail == null) {
@@ -93,14 +109,51 @@ fun PokemonDetailScreen(
                     horizontalAlignment = Alignment.Start
                 ) {
 
-                    Text("Tipo: $typesText")
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "TIPO",
+                        fontSize = 14.sp,
+                        color = Color.Gray,
+                        letterSpacing = 1.5.sp
+                    )
 
-                    Text("Altura: ${detail.height} dm")
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = typesText.uppercase(),
+                        fontSize = 20.sp,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                        color = Color(0xFF1E1E1E)
+                    )
 
-                    Text("Peso: ${detail.weight} g")
+                    Spacer(modifier = Modifier.height(12.dp))
 
+                    Text(
+                        text = "ALTURA",
+                        fontSize = 14.sp,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                        color = Color.Gray,
+                        letterSpacing = 2.sp
+                    )
+
+                    Text(
+                        text = "${detail.height} dm",
+                        fontSize = 18.sp,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Text(
+                        text = "PESO",
+                        fontSize = 14.sp,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                        color = Color.Gray,
+                        letterSpacing = 2.sp
+                    )
+
+                    Text(
+                        text = "${detail.weight} g",
+                        fontSize = 18.sp,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
+                    )
                 }
             }
         }
