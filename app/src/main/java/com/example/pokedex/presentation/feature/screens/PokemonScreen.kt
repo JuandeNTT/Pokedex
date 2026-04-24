@@ -30,7 +30,7 @@ fun PokemonScreen(
 
         is PokemonUiState.Success -> {
 
-            val pageSize = 5
+            val pageSize = 10
             val pages = state.pokemons.chunked(pageSize)
 
             val pagerState = rememberPagerState(
