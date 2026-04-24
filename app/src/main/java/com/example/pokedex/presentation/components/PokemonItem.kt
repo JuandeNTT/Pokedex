@@ -1,6 +1,7 @@
 package com.example.pokedex.presentation.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -38,11 +39,13 @@ fun PokemonItem(
         onClick = {
             viewModel.selectedPokemon = pokemon
             navController.navigate("pokemon_detail")
-        }
+        },
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
                 model = imageUrl,
@@ -50,8 +53,12 @@ fun PokemonItem(
                 modifier = Modifier.size(120.dp)
             )
 
-            Text(text = "ID: #$id")
-            Text(text = pokemon.name.uppercase())
+            Column(
+                modifier = Modifier.padding(start = 16.dp)
+            ) {
+                Text(text = "ID: #$id")
+                Text(text = pokemon.name.uppercase())
+            }
         }
     }
 }
