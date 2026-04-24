@@ -10,6 +10,7 @@ import com.example.pokedex.data.model.PokemonResult
 import com.example.pokedex.data.network.RetrofitClient
 import com.example.pokedex.presentation.state.PokemonUiState
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeout
 
 class PokemonViewModel : ViewModel() {
     private var _uiState by mutableStateOf<PokemonUiState>(PokemonUiState.Loading)
@@ -26,7 +27,9 @@ class PokemonViewModel : ViewModel() {
     fun loadPokemons() {
         viewModelScope.launch {
             try {
-                val response = RetrofitClient.instance.getPokemonList()
+                val response = withTimeout(10000) {
+                RetrofitClient.instance.getPokemonList()
+                }
                 _uiState = if (response.results.isEmpty()) {
                     PokemonUiState.Empty
                 } else {
