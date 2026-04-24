@@ -21,6 +21,7 @@ import androidx.navigation.NavHostController
 import com.example.pokedex.data.model.PokemonResult
 import com.example.pokedex.presentation.components.PokemonItem
 import com.example.pokedex.presentation.feature.viewmodel.PokemonViewModel
+import com.example.pokedex.ui.theme.LocalDimens
 
 @Composable
 fun SuccessScreen(
@@ -28,7 +29,7 @@ fun SuccessScreen(
     navController: NavHostController,
     viewModel: PokemonViewModel
 ) {
-
+    val dimens = LocalDimens.current
     val pageSize = 10
     val pages = pokemons.chunked(pageSize)
 
@@ -44,7 +45,7 @@ fun SuccessScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(dimens.paddingSmall),
             contentAlignment = Alignment.Center
         ) {
             Text(
@@ -52,8 +53,8 @@ fun SuccessScreen(
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
-                    .background(Color(0xFFEF5350), RoundedCornerShape(12.dp))
-                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .background(Color(0xFFEF5350), RoundedCornerShape(dimens.radiusMedium))
+                    .padding(horizontal = dimens.paddingMedium, vertical = dimens.paddingSmall)
             )
         }
 

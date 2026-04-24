@@ -23,29 +23,33 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.pokedex.ui.theme.LocalDimens
+
 @Composable
 fun ErrorScreen(message: String, onRetry: () -> Unit) {
+    val dimens = LocalDimens.current
+
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(dimens.paddingMedium),
         contentAlignment = Alignment.TopCenter
     ) {
         Card(
-            shape = RoundedCornerShape(16.dp),
+            shape = RoundedCornerShape(dimens.radiusLarge),
             colors = CardDefaults.cardColors(
                 containerColor = Color(0xFFEF5350)
             ),
 
             ) {
             Column(
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier.padding(dimens.paddingLarge),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
                 Text(message,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(vertical = 8.dp),
+                    modifier = Modifier.padding(vertical = dimens.paddingSmall),
                     fontWeight = FontWeight.Bold
                 )
 
@@ -54,19 +58,19 @@ fun ErrorScreen(message: String, onRetry: () -> Unit) {
                         onRetry()
                     },
                     modifier = Modifier
-                        .padding(8.dp)
+                        .padding(dimens.paddingSmall)
                         .align(Alignment.CenterHorizontally),
                     colors = ButtonDefaults.outlinedButtonColors(
                         containerColor = Color.White,
                         contentColor = Color.Black
                     ),
-                    border = BorderStroke(1.dp, Color.Red)
+                    border = BorderStroke(dimens.borderRadiusSmall, Color.Red)
                 ) {
                     Icon(
                         Icons.Default.Refresh,
                         contentDescription = "Reintentar"
                     )
-                    Spacer(Modifier.width(10.dp))
+                    Spacer(Modifier.width(dimens.spacerLarge))
                     Text("Reintentar")
                 }
             }

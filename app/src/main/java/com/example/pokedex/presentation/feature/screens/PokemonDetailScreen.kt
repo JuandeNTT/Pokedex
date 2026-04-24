@@ -1,5 +1,6 @@
 package com.example.pokedex.presentation.feature.screens
 
+import android.R
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,13 +31,14 @@ import coil.compose.AsyncImage
 import com.example.pokedex.data.model.getId
 import com.example.pokedex.data.model.getImageUrl
 import com.example.pokedex.presentation.feature.viewmodel.PokemonViewModel
+import com.example.pokedex.ui.theme.LocalDimens
 
 @Composable
 fun PokemonDetailScreen(
     navController: NavController,
     viewModel: PokemonViewModel
 ) {
-
+    val dimens = LocalDimens.current
     val pokemon = viewModel.selectedPokemon
 
     if (pokemon == null) {
@@ -56,17 +58,17 @@ fun PokemonDetailScreen(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(dimens.paddingMedium),
         elevation = CardDefaults.cardElevation(10.dp)
     ) {
         Column(
-            modifier = Modifier.padding(20.dp),
+            modifier = Modifier.padding(dimens.paddingLarge),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Card(
-                modifier = Modifier.size(180.dp),
-                border = BorderStroke(2.dp, Color.LightGray),
+                modifier = Modifier.size(dimens.pokemonImageLarge),
+                border = BorderStroke(dimens.borderRadiusMedium, Color.LightGray),
                 shape = CardDefaults.shape,
                 elevation = CardDefaults.cardElevation(20.dp)
             ) {
@@ -77,22 +79,22 @@ fun PokemonDetailScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(dimens.spacerLarge12))
 
             Text(
                 text = "ID: #$id",
                 color = Color.Gray,
-                fontSize = 16.sp,
-                letterSpacing = 1.2.sp
+                fontSize = dimens.textMedium,
+                letterSpacing = dimens.letterSpacingSmall
             )
 
             Text(
                 text = pokemon.name.uppercase(),
-                fontSize = 30.sp,
+                fontSize = dimens.textExtraLarge,
                 fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold,
-                letterSpacing = 2.sp
+                letterSpacing = dimens.letterSpacingMedium
             )
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(dimens.spacerLarge20))
 
             if (detail == null) {
                 Box(
@@ -111,47 +113,47 @@ fun PokemonDetailScreen(
 
                     Text(
                         text = "TIPO",
-                        fontSize = 14.sp,
+                        fontSize = dimens.textSmall,
                         color = Color.Gray,
-                        letterSpacing = 1.5.sp
+                        letterSpacing = dimens.letterSpacingSmall
                     )
 
                     Text(
                         text = typesText.uppercase(),
-                        fontSize = 20.sp,
+                        fontSize = dimens.textMedium,
                         fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
                         color = Color(0xFF1E1E1E)
                     )
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(dimens.spacerLarge12))
 
                     Text(
                         text = "ALTURA",
-                        fontSize = 14.sp,
+                        fontSize = dimens.textMedium,
                         fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                         color = Color.Gray,
-                        letterSpacing = 2.sp
+                        letterSpacing = dimens.letterSpacingMedium
                     )
 
                     Text(
                         text = "${detail.height} dm",
-                        fontSize = 18.sp,
+                        fontSize = dimens.textMedium,
                         fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
                     )
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(dimens.spacerLarge12))
 
                     Text(
                         text = "PESO",
-                        fontSize = 14.sp,
+                        fontSize = dimens.textSmall,
                         fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
                         color = Color.Gray,
-                        letterSpacing = 2.sp
+                        letterSpacing = dimens.letterSpacingMedium
                     )
 
                     Text(
                         text = "${detail.weight} g",
-                        fontSize = 18.sp,
+                        fontSize = dimens.textMedium,
                         fontWeight = androidx.compose.ui.text.font.FontWeight.Medium
                     )
                 }
@@ -162,19 +164,19 @@ fun PokemonDetailScreen(
                 navController.popBackStack()
             },
             modifier = Modifier
-                .padding(16.dp)
+                .padding(dimens.paddingMedium)
                 .align(Alignment.CenterHorizontally),
             colors = ButtonDefaults.outlinedButtonColors(
                 containerColor = Color.Red,
                 contentColor = Color.White
             ),
-            border = BorderStroke(1.dp, Color.Red)
+            border = BorderStroke(dimens.borderRadiusSmall, Color.Red)
         ) {
         Icon(
             Icons.Default.ArrowBack,
             contentDescription = "Volver al listado"
         )
-        Spacer(Modifier.width(10.dp))
+        Spacer(Modifier.width(dimens.borderRadiusSmall))
         Text("Volver al listado")
     }
     }

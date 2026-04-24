@@ -15,24 +15,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.pokedex.ui.theme.LocalDimens
 
 @Composable
 fun EmptyScreen() {
+    val dimens = LocalDimens.current
+
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(dimens.paddingMedium),
         contentAlignment = Alignment.TopCenter
     ) {
         Card(
-            shape = RoundedCornerShape(16.dp),
+            shape = RoundedCornerShape(dimens.radiusLarge),
             colors = CardDefaults.cardColors(
                 containerColor = Color(0xFFEF5350)
             ),
 
         ) {
             Column(
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier.padding(dimens.paddingLarge),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
@@ -41,7 +44,7 @@ fun EmptyScreen() {
                 Text(
                     "No se encontraron registros en la Pokédex",
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(vertical = 8.dp)
+                    modifier = Modifier.padding(vertical = dimens.paddingSmall)
                 )
 
                 Text("¡¡¡¡Hazte con todos!!!!", fontWeight = FontWeight.Bold)

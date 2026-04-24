@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.pokedex.R
 import com.example.pokedex.presentation.feature.navigation.ScreenRoutes
+import com.example.pokedex.ui.theme.LocalDimens
 import kotlinx.coroutines.delay
 
 @Composable
@@ -32,6 +33,7 @@ fun SplashScreen(navController: NavHostController) {
 
 @Composable
 fun Splash() {
+    val dimens = LocalDimens.current
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -40,11 +42,11 @@ fun Splash() {
         Image(
             painter = painterResource(id = R.drawable.pokedex),
             contentDescription = "Pokedex",
-            modifier = Modifier.size(150.dp)
+            modifier = Modifier.size(dimens.pokemonImageExtraMedium)
         )
         Text(
             text = "Inicializando pokédex...",
-            fontSize = 30.sp,
+            fontSize = dimens.textExtraLarge,
             fontWeight = FontWeight.Bold
         )
     }
